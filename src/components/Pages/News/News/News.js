@@ -2,7 +2,10 @@ import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-
+import { MdSimCardDownload } from "react-icons/md";
+import ReactDOM from "react-dom";
+import Pdf from "react-to-pdf";
+const ref = React.createRef();
 
 
 
@@ -17,9 +20,23 @@ const News = () => {
     const { badge, number } = rating;
 
 
+
     return (
-        <Card>
+        <Card ref={ref}>
             <Card.Title className='mt-3 m-1'>{title}</Card.Title>
+
+
+            <Pdf targetRef={ref} filename="code-example.pdf">
+                {({ toPdf }) =>
+
+                    <p onClick={toPdf} className='text-end '><MdSimCardDownload className="border border-danger rounded-circle fs-2 me-4" ></MdSimCardDownload> </p>
+                }
+            </Pdf>
+
+
+
+
+
             <Card.Img variant="top" src={image_url} />
             <Card.Body>
 

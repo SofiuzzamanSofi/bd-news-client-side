@@ -13,15 +13,15 @@ import PrivetRoutes from "../PrivetRoutes/PrivetRoutes";
 export const router = createBrowserRouter([
     {
         path: '/', element: <Main />, errorElement: <ErrorPage />, children: [
-            { path: '/', element: <Home />, loader: () => fetch('http://localhost:5000/news') },
+            { path: '/', element: <Home />, loader: () => fetch('https://bd-news-server-one.vercel.app/news') },
             {
                 path: '/category/:id', element: <Category />,
                 loader: ({ params }) =>
-                    fetch(`http://localhost:5000/category/${params.id}`)
+                    fetch(`https://bd-news-server-one.vercel.app/category/${params.id}`)
             },
             {
-                path: '/news/:id', element: <PrivetRoutes><News /></PrivetRoutes>,
-                loader: ({ params }) => fetch(`http://localhost:5000/news/${params.id}`)
+                path: '/news/:_id', element: <PrivetRoutes><News /></PrivetRoutes>,
+                loader: ({ params }) => fetch(`https://bd-news-server-one.vercel.app/news/${params._id}`)
             },
             { path: 'login', element: <Login /> },
             { path: 'register', element: <Register /> },

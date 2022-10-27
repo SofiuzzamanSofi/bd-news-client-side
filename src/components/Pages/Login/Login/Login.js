@@ -31,8 +31,8 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log('login ok done', user);
+                navigate(from, { replace: true });
                 if (user.emailVerified) {
-                    navigate(from, { replace: true });
                 }
                 else {
                     toast.error('kindly check your email, or spam folder to verify ')
@@ -43,9 +43,10 @@ const Login = () => {
                 const errorMessage = error.message;
                 console.log('login faild error', error);
                 setError(errorMessage)
+                toast.error(errorMessage)
             })
             .finally(() => {
-                setLoading(false);
+                // setLoading(false);
             })
     }
 
